@@ -25,4 +25,7 @@ router.post(
 
 router.get('/', auth, referralController.getReferralRequests);
 
+// Add a route for giving a referral
+router.post('/give/:id', auth, referralController.giveReferral);
+
 module.exports = router;
