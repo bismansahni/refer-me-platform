@@ -1,25 +1,22 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:3010/api/auth/login', {
-                email,
-                password
-            });
+            const res = await axios.post('http://localhost:3010/api/auth/login', { email, password });
             localStorage.setItem('token', res.data.token);
             setMessage('Login successful');
-            console.log(res.data);
+            navigate('/');
         } catch (error) {
             setMessage('Error logging in');
-            console.error('Error response:', error.response ? error.response.data : error.message);
         }
     };
 
