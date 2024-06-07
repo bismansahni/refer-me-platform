@@ -1,3 +1,4 @@
+// controllers/authController.js
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -19,6 +20,10 @@ exports.register = async (req, res) => {
             email,
             password
         });
+
+        // Hash the password before saving
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(password, salt);
 
         await user.save();
 
