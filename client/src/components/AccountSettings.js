@@ -1,14 +1,32 @@
-// src/components/AccountSettings.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from './Navbar';
 import './styles/AccountSettings.css';
+import Navbar from './Navbar';
 
 const AccountSettings = () => {
     const [jobProfile, setJobProfile] = useState('');
     const [companyName, setCompanyName] = useState('');
     const [resume, setResume] = useState(null);
     const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            const token = localStorage.getItem('token');
+            try {
+                const res = await axios.get('http://localhost:3010/api/users/profile', {
+                    headers: {
+                        'x-auth-token': token
+                    }
+                });
+                setJobProfile(res.data.jobProfile);
+                setCompanyName(res.data.companyName);
+                setResume(res.data.resume);
+            } catch (error) {
+                console.error('Error fetching profile', error);
+            }
+        };
+        fetchProfile();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,7 +51,7 @@ const AccountSettings = () => {
     };
 
     return (
-        <div>
+        <div className="account-container">
             <Navbar />
             <div className="account-settings-container">
                 <div className="account-settings-box">
@@ -67,8 +85,12 @@ const AccountSettings = () => {
                                 type="file"
                                 id="resume"
                                 onChange={(e) => setResume(e.target.files[0])}
-                                required
                             />
+                            {resume && (
+                                <div>
+                                    <a href={`http://localhost:3010/${resume}`} target="_blank" rel="noopener noreferrer">View Resume</a>
+                                </div>
+                            )}
                         </div>
                         <button type="submit" className="save-button">Save</button>
                         {message && <p className="message">{message}</p>}

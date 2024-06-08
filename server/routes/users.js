@@ -17,7 +17,7 @@ const upload = multer({ storage: storage });
 
 router.post('/profile', [auth, upload.single('resume')], async (req, res) => {
     const { jobProfile, companyName } = req.body;
-    const resume = req.file ? req.file.path : null;
+    const resume = req.file ? req.file.filename : null;
 
     try {
         const user = await User.findById(req.user.id);
@@ -33,6 +33,20 @@ router.post('/profile', [auth, upload.single('resume')], async (req, res) => {
         await user.save();
 
         res.json({ msg: 'Profile updated successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+});
+
+router.get('/profile', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found' });
+        }
+
+        res.json(user);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
