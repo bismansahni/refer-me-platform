@@ -1,3 +1,4 @@
+// src/components/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +7,6 @@ import './styles/Login.css';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
@@ -15,58 +15,48 @@ const Login = () => {
 
         try {
             const res = await axios.post('http://localhost:3010/api/auth/login', { email, password });
-            localStorage.setItem('token', res.data.token);
             setMessage('Login successful');
-            navigate('/dashboard'); // Redirect to the Dashboard after successful login
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user', JSON.stringify(res.data.user));
+            navigate('/dashboard');
         } catch (error) {
             setMessage('Error logging in');
         }
     };
 
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
-
     return (
         <div className="login-container">
             <div className="login-box">
-                <img src="logo.png" alt="Logo" className="logo" />
-                <h2>Good to see you again</h2>
+                <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Your email</label>
+                        <label htmlFor="email">Email</label>
                         <input
                             type="email"
-                            placeholder="e.g. elon@tesla.com"
+                            id="email"
+                            placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
                     </div>
                     <div className="form-group">
-                        <label>Your password</label>
-                        <div className="password-wrapper">
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                placeholder="e.g. ilovemangools123"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <button
-                                type="button"
-                                className="show-password-button"
-                                onClick={togglePasswordVisibility}
-                            >
-                                {showPassword ? 'Hide' : 'Show'}
-                            </button>
-                        </div>
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
                     </div>
-                    <button type="submit" className="login-button">Sign in</button>
+                    <button type="submit" className="login-button">Login</button>
+                    {message && <p className="message">{message}</p>}
                 </form>
-                {message && <p className="message">{message}</p>}
-                <div className="links">
-                    <a href="/register">Don't have an account?</a>
-                    <a href="/forgot-password">Forgot password?</a>
-                </div>
+                <p className="links">
+                    Don't have an account? <a href="/register">Register</a>
+                </p>
             </div>
         </div>
     );

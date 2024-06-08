@@ -15,10 +15,19 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    jobProfile: {
+        type: String
+    },
+    companyName: {
+        type: String
+    },
+    resume: {
+        type: String
+    },
     date: {
         type: Date,
         default: Date.now
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('user', UserSchema);
