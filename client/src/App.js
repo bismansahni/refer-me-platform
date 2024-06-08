@@ -5,7 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import AccountSettings from './components/AccountSettings';
-import Navbar from './components/Navbar';
+
 
 function App() {
     return (
