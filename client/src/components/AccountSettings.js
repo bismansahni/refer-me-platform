@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './styles/AccountSettings.css';
+import Navbar from './Navbar';
 
 const AccountSettings = () => {
     const [jobProfile, setJobProfile] = useState('');
@@ -31,7 +32,10 @@ const AccountSettings = () => {
     };
 
     return (
+        <div className="dashboard-container">
+            <Navbar/>
         <div className="account-settings-container">
+           
             <div className="account-settings-box">
                 <h2>Account Settings</h2>
                 <form onSubmit={handleSubmit}>
@@ -70,6 +74,7 @@ const AccountSettings = () => {
                     {message && <p className="message">{message}</p>}
                 </form>
             </div>
+        </div>
         </div>
     );
 };
