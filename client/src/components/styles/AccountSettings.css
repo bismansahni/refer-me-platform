@@ -1,4 +1,18 @@
 /* styles/AccountSettings.css */
+
+
+
+
+
+
+.account-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+
 .account-settings-container {
     display: flex;
     justify-content: center;
