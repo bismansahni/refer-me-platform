@@ -1,10 +1,13 @@
+/* styles/Navbar.css */
 .navbar {
-   
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
     box-sizing: border-box;
+    position: relative;
 }
 
 .navbar h1 {
@@ -13,17 +16,17 @@
     color: #ffffff;
 }
 
-.user-info {
+.navbar-right {
     display: flex;
     align-items: center;
 }
 
-.user-info span {
+.navbar-right p {
     color: #ffffff;
     margin-right: 1rem;
 }
 
-.logout-button {
+.logout-button, .account-settings-button {
     padding: 0.5rem 1rem;
     background-color: #f44336;
     color: #ffffff;
@@ -32,22 +35,9 @@
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
-    margin-right: 1rem;
+    margin-left: 1rem;
 }
 
-.logout-button:hover {
+.logout-button:hover, .account-settings-button:hover {
     background-color: #d32f2f;
-}
-
-.account-settings-link {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    background-color: #4CAF50;
-    border-radius: 0.25rem;
-    transition: background-color 0.3s ease;
-}
-
-.account-settings-link:hover {
-    background-color: #45a049;
 }
