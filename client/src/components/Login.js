@@ -1,3 +1,4 @@
+// src/components/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +17,7 @@ const Login = () => {
             const res = await axios.post('http://localhost:3010/api/auth/login', { email, password });
             setMessage('Login successful');
             localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user', JSON.stringify(res.data.user));
             navigate('/dashboard');
         } catch (error) {
             setMessage('Error logging in');

@@ -1,0 +1,59 @@
+/* styles/AccountSettings.css */
+.account-settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50rem;
+    background-color: #ffffff;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin: 2rem;
+}
+
+.account-settings-box {
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 1.25rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.625rem;
+    border: 0.063rem solid #ddd;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.save-button {
+    width: 100%;
+    padding: 0.625rem;
+    background-color: #4CAF50;
+    border: none;
+    color: #ffffff;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.save-button:hover {
+    background-color: #45a049;
+}
+
+.message {
+    margin-top: 0.625rem;
+    text-align: center;
+    color: #ff0000;
+    font-size: 0.875rem;
+}
