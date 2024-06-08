@@ -1,28 +1,22 @@
+// src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Register from './components/Register';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
-import Protected from './components/Protected';
-import RequestReferral from './components/RequestReferral';
-import GiveReferral from './components/GiveReferral';
-import PrivateRoute from './components/PrivateRoute';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard';
 
-const App = () => {
+function App() {
     return (
         <Router>
-            <div className="container">
-                <h1 className="text-center my-4">Referral Platform</h1>
+            <div>
                 <Routes>
-                    <Route path="/register" element={<Register />} />
+                    <Route path="/" element={<Register />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/protected" element={<PrivateRoute><Protected /></PrivateRoute>} />
-                    <Route path="/request-referral" element={<PrivateRoute><RequestReferral /></PrivateRoute>} />
-                    <Route path="/give-referral" element={<PrivateRoute><GiveReferral /></PrivateRoute>} />
-                    <Route path="/" element={<Navigate to="/login" />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                 </Routes>
             </div>
         </Router>
     );
-};
+}
 
 export default App;
