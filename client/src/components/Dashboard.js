@@ -1,41 +1,36 @@
 // src/components/Dashboard.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import './styles/Dashboard.css';
 
 const Dashboard = () => {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
+
     return (
-        <div style={styles.container}>
-            <h1 style={styles.title}>Dashboard</h1>
-            <nav style={styles.nav}>
-                <Link style={styles.link} to="/protected">Protected</Link>
-                <Link style={styles.link} to="/request-referral">Request Referral</Link>
-                <Link style={styles.link} to="/give-referral">Give Referral</Link>
-                <Link style={styles.link} to="/logout">Logout</Link>
-            </nav>
+        <div className="dashboard-container">
+            <div className="navbar">
+                <h1>Referral Platform</h1>
+                <button className="logout-button" onClick={handleLogout}>Logout</button>
+            </div>
+            <div className="split-container">
+                <div className="split left">
+                    <div className="centered">
+                        <button className="dashboard-button" onClick={() => navigate('/request-referral')}>Request Referral</button>
+                    </div>
+                </div>
+                <div className="split right">
+                    <div className="centered">
+                        <button className="dashboard-button" onClick={() => navigate('/give-referral')}>Give Referral</button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
-};
-
-const styles = {
-    container: {
-        padding: '2rem',
-        textAlign: 'center',
-    },
-    title: {
-        fontSize: '2rem',
-        marginBottom: '1rem',
-    },
-    nav: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    link: {
-        margin: '0.5rem 0',
-        fontSize: '1.25rem',
-        textDecoration: 'none',
-        color: '#4CAF50',
-    },
 };
 
 export default Dashboard;
