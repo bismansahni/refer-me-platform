@@ -3,7 +3,7 @@ const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
-const auth = require('./middleware/auth'); // Import the auth middleware
+const auth = require('./middleware/auth');
 
 // Load environment variables
 dotenv.config();
@@ -18,7 +18,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Add this line to enable CORS
+app.use(cors());
 
 // Define routes
 app.use('/api/auth', require('./routes/auth'));
@@ -33,6 +33,17 @@ app.get('/api/protected', auth, (req, res) => {
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Serve static files from the React app in production
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/build/index.html'));
+    });
+}
+
 const PORT = process.env.PORT || 3010;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+module.exports = app;
