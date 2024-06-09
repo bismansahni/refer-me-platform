@@ -6,13 +6,12 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "npm --prefix server start",
     "client": "npm --prefix client start",
-    "build": "npm --prefix client run build",
+    "build": "npm run build:client",
+    "build:client": "npm --prefix client run build",
+    "postbuild": "npm run server",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "devDependencies": {
     "concurrently": "^6.0.0"
-  },
-  "dependencies": {
-    "express-validator": "^7.1.0"
   }
 }
