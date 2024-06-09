@@ -16,7 +16,7 @@ const RequestReferral = () => {
         }
 
         try {
-            const res = await axios.post('http://localhost:3010/api/referrals', { title, description, industry }, {
+            const res = await axios.post('https://refer-me-server.vercel.app/api/referrals', { title, description, industry }, {
                 headers: {
                     'x-auth-token': token
                 }

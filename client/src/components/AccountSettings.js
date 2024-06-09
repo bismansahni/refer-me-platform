@@ -13,7 +13,7 @@ const AccountSettings = () => {
         const fetchProfile = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get('http://localhost:3010/api/users/profile', {
+                const res = await axios.get('https://refer-me-server.vercel.app/api/users/profile', {
                     headers: {
                         'x-auth-token': token
                     }

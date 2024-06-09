@@ -9,7 +9,7 @@ const Protected = () => {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get('http://localhost:3010/api/protected', {
+                const res = await axios.get('https://refer-me-server.vercel.app/api/protected', {
                     headers: {
                         'x-auth-token': token
                     }

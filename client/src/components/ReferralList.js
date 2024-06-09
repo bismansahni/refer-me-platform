@@ -9,7 +9,7 @@ const ReferralList = () => {
         const fetchReferrals = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get('http://localhost:3012/api/referrals', 
+                const res = await axios.get('https://refer-me-server.vercel.app/api/referrals', 
                     { headers: { 'x-auth-token': token } });
                 setReferrals(res.data);
             } catch (error) {
