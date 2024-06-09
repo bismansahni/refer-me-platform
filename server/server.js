@@ -42,6 +42,11 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
+// Add a route to respond with "Hello"
+app.get('/', (req, res) => {
+    res.send('Hello');
+});
+
 const PORT = process.env.PORT || 3010;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
