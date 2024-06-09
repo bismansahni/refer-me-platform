@@ -38,7 +38,7 @@ const AccountSettings = () => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:3010/api/users/profile', formData, {
+            await axios.post('https://refer-me-server.vercel.app/api/users/profile', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'x-auth-token': token
@@ -88,7 +88,7 @@ const AccountSettings = () => {
                             />
                             {resume && (
                                 <div>
-                                    <a href={`http://localhost:3010/${resume}`} target="_blank" rel="noopener noreferrer">View Resume</a>
+                                    <a href={`https://refer-me-platform.vercel.app/${resume}`} target="_blank" rel="noopener noreferrer">View Resume</a>
                                 </div>
                             )}
                         </div>
