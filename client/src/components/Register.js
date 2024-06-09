@@ -15,7 +15,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post('http://localhost:3010/api/auth/register', { name, email, password });
+            const res = await axios.post('https://refer-me-server.vercel.app/api/auth/register', { name, email, password });
             setMessage('Registration successful');
             localStorage.setItem('token', res.data.token);
             navigate('/dashboard');

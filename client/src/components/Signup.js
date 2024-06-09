@@ -12,7 +12,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3010/api/auth/register', { name, email, password });
+            await axios.post('https://refer-me-server.vercel.app/api/auth/register', { name, email, password });
             setMessage('Registration successful');
         } catch (error) {
             setMessage('Error registering user');
