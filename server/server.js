@@ -24,6 +24,7 @@ app.use(cors());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/referrals', require('./routes/referrals'));
 app.use('/api/users', require('./routes/users'));
+app.use('/api/profile', require('./routes/profile'));
 
 // Define protected route using the auth middleware
 app.get('/api/protected', auth, (req, res) => {

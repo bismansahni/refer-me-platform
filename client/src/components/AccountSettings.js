@@ -1,4 +1,3 @@
-// src/components/AccountSettings.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/AccountSettings.css';
@@ -10,21 +9,21 @@ const apiUrl = process.env.REACT_APP_API_BASE_URL;
 const AccountSettings = () => {
     const [jobProfile, setJobProfile] = useState('');
     const [companyName, setCompanyName] = useState('');
-    const [resume, setResume] = useState(null);
+    const [resumeUrl, setResumeUrl] = useState('');
     const [message, setMessage] = useState('');
 
     useEffect(() => {
         const fetchProfile = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get(`${apiUrl}/api/users/profile`, {
+                const res = await axios.get(`${apiUrl}/api/profile/profile`, {
                     headers: {
                         'x-auth-token': token
                     }
                 });
                 setJobProfile(res.data.jobProfile);
                 setCompanyName(res.data.companyName);
-                setResume(res.data.resume);
+                setResumeUrl(res.data.resumeUrl);
             } catch (error) {
                 console.error('Error fetching profile', error);
             }
@@ -35,16 +34,14 @@ const AccountSettings = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('jobProfile', jobProfile);
-        formData.append('companyName', companyName);
-        formData.append('resume', resume);
-
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`${apiUrl}/api/users/profile`, formData, {
+            await axios.post(`${apiUrl}/api/profile/profile`, {
+                jobProfile,
+                companyName,
+                resumeUrl
+            }, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
                     'x-auth-token': token
                 }
             });
@@ -84,17 +81,15 @@ const AccountSettings = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="resume">Resume</label>
+                            <label htmlFor="resumeUrl">Resume URL</label>
                             <input
-                                type="file"
-                                id="resume"
-                                onChange={(e) => setResume(e.target.files[0])}
+                                type="url"
+                                id="resumeUrl"
+                                placeholder="Resume URL"
+                                value={resumeUrl}
+                                onChange={(e) => setResumeUrl(e.target.value)}
+                                required
                             />
-                            {resume && (
-                                <div>
-                                    <a href={`${apiUrl}/${resume}`} target="_blank" rel="noopener noreferrer">View Resume</a>
-                                </div>
-                            )}
                         </div>
                         <button type="submit" className="save-button">Save</button>
                         {message && <p className="message">{message}</p>}
