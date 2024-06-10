@@ -1,7 +1,11 @@
+// src/components/AccountSettings.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/AccountSettings.css';
 import Navbar from './Navbar';
+
+// Ensure to load the environment variables
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
 const AccountSettings = () => {
     const [jobProfile, setJobProfile] = useState('');
@@ -13,7 +17,7 @@ const AccountSettings = () => {
         const fetchProfile = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get('https://refer-me-server.vercel.app/api/users/profile', {
+                const res = await axios.get(`${apiUrl}/api/users/profile`, {
                     headers: {
                         'x-auth-token': token
                     }
@@ -38,7 +42,7 @@ const AccountSettings = () => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.post('https://refer-me-server.vercel.app/api/users/profile', formData, {
+            await axios.post(`${apiUrl}/api/users/profile`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'x-auth-token': token
@@ -88,7 +92,7 @@ const AccountSettings = () => {
                             />
                             {resume && (
                                 <div>
-                                    <a href={`https://refer-me-platform.vercel.app/${resume}`} target="_blank" rel="noopener noreferrer">View Resume</a>
+                                    <a href={`${apiUrl}/${resume}`} target="_blank" rel="noopener noreferrer">View Resume</a>
                                 </div>
                             )}
                         </div>

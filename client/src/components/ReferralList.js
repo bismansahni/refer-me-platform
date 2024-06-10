@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// Ensure to load the environment variables
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
 const ReferralList = () => {
     const [referrals, setReferrals] = useState([]);
 
@@ -9,7 +12,7 @@ const ReferralList = () => {
         const fetchReferrals = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get('https://refer-me-server.vercel.app/api/referrals', 
+                const res = await axios.get(`${apiUrl}/api/referrals`, 
                     { headers: { 'x-auth-token': token } });
                 setReferrals(res.data);
             } catch (error) {

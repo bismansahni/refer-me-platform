@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Ensure to load the environment variables
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
 const Protected = () => {
     const [message, setMessage] = useState('');
     
@@ -9,7 +12,7 @@ const Protected = () => {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get('https://refer-me-server.vercel.app/api/protected', {
+                const res = await axios.get(`${apiUrl}/api/protected`, {
                     headers: {
                         'x-auth-token': token
                     }

@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './styles/Signup.css';
 
+// Ensure to load the environment variables
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
 const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -12,7 +15,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('https://refer-me-server.vercel.app/api/auth/register', { name, email, password });
+            await axios.post(`${apiUrl}/api/auth/register`, { name, email, password });
             setMessage('Registration successful');
         } catch (error) {
             setMessage('Error registering user');

@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './styles/Register.css';
 
+// Ensure to load the environment variables
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -15,7 +18,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post('https://refer-me-server.vercel.app/api/auth/register', { name, email, password });
+            const res = await axios.post(`${apiUrl}/api/auth/register`, { name, email, password });
             setMessage('Registration successful');
             localStorage.setItem('token', res.data.token);
             navigate('/dashboard');

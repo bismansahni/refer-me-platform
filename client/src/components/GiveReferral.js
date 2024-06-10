@@ -1,5 +1,9 @@
+// src/components/GiveReferral.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
+// Ensure to load the environment variables
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
 const GiveReferral = () => {
     const [referrals, setReferrals] = useState([]);
@@ -14,7 +18,7 @@ const GiveReferral = () => {
             }
 
             try {
-                const res = await axios.get('https://refer-me-server.vercel.app/api/referrals', {
+                const res = await axios.get(`${apiUrl}/api/referrals`, {
                     headers: {
                         'x-auth-token': token
                     }
@@ -36,7 +40,7 @@ const GiveReferral = () => {
         }
 
         try {
-            const res = await axios.post(`http://localhost:3010/api/referrals/give/${id}`, {}, {
+            const res = await axios.post(`${apiUrl}/api/referrals/give/${id}`, {}, {
                 headers: {
                     'x-auth-token': token
                 }

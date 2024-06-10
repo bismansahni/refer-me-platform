@@ -1,5 +1,9 @@
+// src/components/RequestReferral.js
 import React, { useState } from 'react';
 import axios from 'axios';
+
+// Ensure to load the environment variables
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
 const RequestReferral = () => {
     const [title, setTitle] = useState('');
@@ -16,7 +20,7 @@ const RequestReferral = () => {
         }
 
         try {
-            const res = await axios.post('https://refer-me-server.vercel.app/api/referrals', { title, description, industry }, {
+            const res = await axios.post(`${apiUrl}/api/referrals`, { title, description, industry }, {
                 headers: {
                     'x-auth-token': token
                 }
