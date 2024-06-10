@@ -1,7 +1,7 @@
-// src/components/Dashboard.js
+
 import React from 'react';
 import Navbar from './Navbar';
-import './styles/Dashboard.css';
+import './styles/MainDashboard.css';
 
 const Dashboard = () => {
     return (
