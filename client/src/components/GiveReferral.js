@@ -5,6 +5,7 @@ import axios from 'axios';
 // Ensure to load the environment variables
 const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
+
 const GiveReferral = () => {
     const [referrals, setReferrals] = useState([]);
     const [message, setMessage] = useState('');
