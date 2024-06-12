@@ -1,3 +1,5 @@
+//testing 123
+
 const express = require('express');
 const connectDB = require('./config/db');
 const dotenv = require('dotenv');
@@ -10,6 +12,7 @@ dotenv.config();
 
 // Debug log to verify environment variable loading
 console.log('MONGO_URI:', process.env.MONGO_URI);
+
 
 // Connect to database
 connectDB();
