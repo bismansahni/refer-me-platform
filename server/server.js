@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Add a route to respond with "Hello"
 app.get('/', (req, res) => {
-    res.send('Hello');
+    res.send('Server is up and running here');
 });
 
 const PORT = process.env.PORT || 3010;
