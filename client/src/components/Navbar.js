@@ -10,7 +10,7 @@ const Navbar = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        navigate('/login');
+        navigate('/');
     };
 
     return (
@@ -18,6 +18,8 @@ const Navbar = () => {
             <h1>Referral Platform</h1>
             <div className="navbar-right">
                 <p>Welcome, {user && user.name}</p>
+                <button className="dashboard-button" onClick={() => navigate('/dashboard')}>Dashboard</button>
+                <button className="notifications-button" onClick={() => navigate('/notifications')}>Notifications</button>
                 <button className="account-settings-button" onClick={() => navigate('/account-settings')}>Account Settings</button>
                 <button className="logout-button" onClick={handleLogout}>Logout</button>
             </div>
