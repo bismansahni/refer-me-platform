@@ -1,26 +1,29 @@
-
+// src/components/MainDashboard.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import './styles/MainDashboard.css';
 
-const Dashboard = () => {
+const MainDashboard = () => {
+    const navigate = useNavigate();
+
+    const handleRequestReferral = () => {
+        navigate('/request-referral');
+    };
+
+    const handleGiveReferral = () => {
+        navigate('/give-referral'); // Ensure you have this route defined
+    };
+
     return (
-        <div className="dashboard-container">
+        <div>
             <Navbar />
-            <div className="split-container">
-                <div className="split left">
-                    <div className="centered">
-                        <button className="dashboard-button">Request Referral</button>
-                    </div>
-                </div>
-                <div className="split right">
-                    <div className="centered">
-                        <button className="dashboard-button">Give Referral</button>
-                    </div>
-                </div>
+            <div className="main-dashboard">
+                <button className="btn btn-success" onClick={handleRequestReferral}>Request Referral</button>
+                <button className="btn btn-success" onClick={handleGiveReferral}>Give Referral</button>
             </div>
         </div>
     );
 };
 
-export default Dashboard;
+export default MainDashboard;
